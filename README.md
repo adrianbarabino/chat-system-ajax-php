@@ -25,6 +25,22 @@ Requirements
 ============
 
 PHP 5 or newer
+
 MySQL
+
+
+TO-DO
+======
+
+List of to do
+
+-Logout button in panel
+
+-More pages to the panel
+
+-Configuration in the panel
+
+-Set users in the panel
+
 
 
