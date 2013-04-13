@@ -9,3 +9,22 @@ This chat system is maked by Adrian Barabino (coding) and sk8walker
 The code has been 
 released with the Apache License 2.0, 
 PLEASE read it.
+
+
+Configuration and installation
+=============
+
+For install this script you first need configurate this in the file 
+configuration.php
+
+When you edit the file, you can run install.php in your browser and 
+follow the steps.
+
+
+Requirements
+============
+
+PHP 5 or newer
+MySQL
+
+
