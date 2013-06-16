@@ -3,6 +3,45 @@
 	require("./languages/".$config['lang'].".php");
 	require("connection.php");
 error_reporting("ALL");
+
+?>
+
+<!doctype html>
+<html>
+<head>
+<title>Chat System Installation</title>
+<style>
+body {
+    background: rgb(255, 92, 0);
+    margin: 0;
+}
+h1 {
+    background: rgb(34, 34, 34);
+    padding: 0.3em 1em;
+    color: #eee;
+}
+form {
+margin-left:2em;
+}
+p {
+    margin-left: 2em;
+    color: white;
+}
+a {
+    margin-left: 3em;
+    color: white;
+    text-decoration: none;
+    background: #333;
+    border-radius: 0.3em;
+    padding: 1em;
+}
+h3 {
+    margin-left: 1.2em;  color: #222;  font-size: 1.6em;
+}
+</style>
+</head>
+<body>
+<?php
 if($_GET['step'] > 0){
 
 if($_GET['step'] == 3){
@@ -115,3 +154,5 @@ if($_GET['step'] == 1){
 }
 
 ?>
+</body>
+</html>
