@@ -46,7 +46,7 @@ $stmt = preg_replace("/;/", "", $stmt);
 // ----------------------
 // Execute the statement.
 // ----------------------
-if(!$result = $db->query($stmt, $handle){
+if(!$result = $db->query($stmt, $handle)){
 	die("Error in the query to the DB");
 }
 
