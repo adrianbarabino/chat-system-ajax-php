@@ -90,8 +90,7 @@ CREATE TABLE IF NOT EXISTS `last_admin_activity` (
 -- Volcado de datos para la tabla `last_admin_activity`
 --
 
-INSERT INTO `last_admin_activity` (`id`, `datetime`) VALUES
-(1, '2013-04-12 19:17:40');
+
 
 -- --------------------------------------------------------
 
@@ -113,8 +112,4 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `name`, `password`, `rank`) VALUES
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
