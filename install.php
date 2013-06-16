@@ -115,12 +115,15 @@ $sql = "INSERT INTO users (name,password,rank,email) VALUES (";
 			$sql .= ",'2'"; // 2 is rank of admin
 			$sql .= ",'".remove_tags($_POST["mail"])."'";
 			$sql .= ")";
-			$register_result = $db->query($sql); // Execute query
+			if(!$register_result = $db->query($sql)){
+				die("Error in the query to DB ". $db->error);
+				
+			}
 	?>
 	
 		<h1>Sucefully installed</h1>
 
-		<p>Now you NEED delete this file (install.php) and you can now log-in in the panel (/panel/).
+		<p>Now you NEED delete this file (install.php) and you can now <a href="panel/">log-in in the panel (/panel/)</a>.
 		</p>
 	<?php
 }else{
