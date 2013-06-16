@@ -1,12 +1,9 @@
-
-      <article>		
 	<form action="process.php?action=register" method="post"> 
-      Name : <input type ="text" name="name" size=20 maxlength=20>
+      <input type ="text" placeholder="name" name="name" size=28 maxlength=28>
       <br> 
-      Email: <input type ="text" name="email" size=28 maxlength=100>
+      <input type ="text" placeholder="email" name="email" size=28 maxlength=100>
       <br> 
-      Password: <input type ="password" name="password" size=28 maxlength=20>
+      <input type ="password" placeholder="password" name="password" size=28 maxlength=20>
       <br>
-      <input type="submit" class="boton" value="Register">
+      <input type="submit" class="button" value="Register">
       </form>
-	</article>
