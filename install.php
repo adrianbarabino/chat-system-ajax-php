@@ -19,9 +19,19 @@ h1 {
     background: rgb(34, 34, 34);
     padding: 0.3em 1em;
     color: #eee;
+    margin:0;
+}
+
+form input {
+    padding: 0.5em;
+    font-size: 1.1em;
+}
+form button {
+    width: 99%;
 }
 form {
-margin-left:2em;
+    display: inline-block;
+    margin-left:2em;
 }
 p {
     margin-left: 2em;
