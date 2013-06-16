@@ -54,7 +54,7 @@ h3 {
 <?php
 if($_GET['step'] > 0){
 
-if($_GET['step'] == 3){
+if($_GET['step'] == 2){
 if($_POST['mail']){
 
 function run_query_batch($handle, $filename="")
@@ -123,6 +123,8 @@ $sql = "INSERT INTO users (name,password,rank,email) VALUES (";
 		<p>Now you NEED delete this file (install.php) and you can now log-in in the panel (/panel/).
 		</p>
 	<?php
+}else{
+echo "<h1>Error</h1><h3>You don't have ingresed an email</h3>";
 }
 }
 
@@ -131,7 +133,7 @@ if($_GET['step'] == 1){
 	<h1>Installation step 1</h1>
 	<p>For continue you need provide an username and password for the Administrador/Operator</p>
 
-	<form action="install.php?step=3" method="POST">
+	<form action="install.php?step=2" method="POST">
 	
 		<input type="text" id="name" name="name" placeholder="Name of the user" />
 		<br>
