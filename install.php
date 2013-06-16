@@ -131,7 +131,7 @@ if($_GET['step'] == 1){
 	<h1>Installation step 1</h1>
 	<p>For continue you need provide an username and password for the Administrador/Operator</p>
 
-	<form action="install.php?step=2" method="POST">
+	<form action="install.php?step=3" method="POST">
 	
 		<input type="text" id="name" name="name" placeholder="Name of the user" />
 		<br>
