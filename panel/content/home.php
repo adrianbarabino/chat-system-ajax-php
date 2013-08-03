@@ -93,7 +93,7 @@ transition: border linear .2s, box-shadow linear .2s;}
 		}
 		$(document).on("ready", inicio);
 		function inicio(){
-			setInterval(document.location.reload(), 6000)M
+			setInterval(document.location.reload(), 6000);
 			$(".active").on("click", open_chat_popup);
 		}
 	</script>
@@ -174,7 +174,7 @@ return $timeDiff;
             <td>
                 <?php echo $row['query'];?> </td>        
 			<td><?php echo "(".$row['email'].")"; ?></td>  
-			<td><?php echo $statuskey;?></b></td>
+			<td><?php echo $statuskey;?></td>
 <td><abbr title="<?php echo date("c", strtotime($row['date']));?>"><?php echo date("d/m/Y H:i:s", strtotime($row['date']));?></abbr></td>
 			</td>
 
