@@ -21,7 +21,6 @@ $mail = $config['contact_email'];
    	mail($mail,$phrase["form_subject_email"],$cuerpo, $header); 
    	echo $phrase["email_sent"];?>
    	<script language="javascript"> 
-<!-- 
 setTimeout("window.close();",5000) 
 //--> 
 </script>

@@ -20,6 +20,27 @@ $phrase = array(
 	"email" => "E-Mail",
 	"date" => "Fecha",
 	"message" => "Mensaje",
-	"form_subject_email" => "Formulario enviado desde la web"
+	"form_subject_email" => "Formulario enviado desde la web",
+	"ask_button" => "Enviar Consulta",
+	"unanswered" => "No Respondido",
+	"waiting" => "Esperando",
+	"answered" => "Respondido",
+	"last-activity" => "Última Actividad",
+	"you-must-fill-fields" => "Debe llenar como mínimo los campos de email y contraseña",
+	"sucefully_registered_now_you_be_redirected" => "Has sido registrado con exito! Ahora serás redireccionado hacia el formulario de ingreso",
+	"sucefully_log_out_now_you_be_redirected" => "Has salido con exito! Ahora serás redireccionado hacia el inicio",
+	"sucefully_log_in_now_you_be_redirected" => "Has ingresado con exito! Ahora serás redireccionado hacia el inicio",
+	"wrong_password" => "Contraseña incorrecta",
+	"user_doesnt_exist_in_the_database" => "El usuario no existe en la base de datos",
+	"wrong_parameters" => "Parametros incorrectos",
+    "error_duplicated_email" => "Error! El correo ya existe en la base de datos",
+    "welcome" => "Bienvenido",
+    "chat_sessions_list" => "Lista de mensajes",
+    "status" => "Estado",
+    "query_time" => "Hora de consulta",
+    "logout" => "Salir",
+    "actions" => "Accion"
+
+  
 	);
 ?>

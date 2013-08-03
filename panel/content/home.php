@@ -1,28 +1,34 @@
 <?php
-
-
-require("../connection.php");
 ?><!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Admin Panel</title>
 	<style>
-	article{
+	tr{
 
-		margin: 0.45em 0.3em;
-		padding:0.6em 0.4em;
+border:1px solid #aaa;
+    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+    border-radius:2px;
+    color: #888;
+    font-size: 12px;
+    padding-right:30px;
+    -moz-transition: padding .25s;
+    -webkit-transition: padding .25s;
+    -o-transition: padding .25s;
+    transition: padding .25s;
 	}
-	article.waiting{
-		background:#149;
-		color:#eee;
+	tr.0{
+	box-shadow: 0 0 5px #d45252;
+    border-color: #b03535
 	}
-	article.answered{
-		background:#333;
+	tr.3{
+		background:#555555;
 		color:white;
 	}
-	article.active{
-		box-shadow: 0 0 50px 10px #149;
+	tr.active{
+	 box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
 	}
 	h3{
 		display:inline-block;
@@ -33,9 +39,32 @@ require("../connection.php");
 		text-align:right;
 		float:right;
 	}
+#tabla_home {min-height: 20px;
+padding: 3px;
+margin-bottom: 20px;
+background-color: #f5f5f5;
+border: 1px solid #e3e3e3;
+
+border-radius: 4px;
+
+box-shadow: inset 0 1px 10px rgba(0,0,0,0.05);
+}
+#tabla_home td {background-color: #fff;
+border: 1px solid #ccc;
+
+box-shadow: inset 0 1px 10px rgba(0,0,0,0.075);
+
+transition: border linear .2s, box-shadow linear .2s;}
+#tabla_home td.top {vertical-align:top;width:1%;text-align:right;}
+#tabla_home thead tr {background:#414141;color:#fff}
+#tabla_home thead tr td{background:#414141;border:2px solid #333;}
+#tabla_home .r1 { background-color: #ffffff; }
+#tabla_home .r2 { background-color: #dddddd; }
+#tabla_home caption	{ font-style:italic; color:#999; }
 	</style>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   	<script src="../timeago.js"></script>
+  	<script src="../timeago-<?php echo $config['lang']; ?>.js"></script>
   	<script>
 		$(document).on("ready", iniciar);
 		var lastId;
@@ -51,33 +80,57 @@ require("../connection.php");
 
 		function open_chat_popup(info) {
 			var sessionId = info.currentTarget.id.substring(8);
-			var id_article = info.currentTarget.id;
-			var is_active = $("article#" + id_article).hasClass("active");
+			var id_tr = info.currentTarget.id;
+			var is_active = $("tr#" + id_tr).hasClass("active");
 			if(is_active){
 				var options = "toolbar=no, directories=no, status=no, menubar=no, scrollbar=no, resizable=no, width=300, height=450";
 				var chat_url = "chat.php?sessionId="+sessionId;
 				window.open(chat_url, 'Chat', options);
-				console.log("article#" + id_article);
-				$("article#" + id_article).removeClass("active");
+				console.log("tr#" + id_tr);
+				$("tr#" + id_tr).removeClass("active");
 			}else{
 				console.log("This session is on chat now!");
 			}
 		}
 		$(document).on("ready", inicio);
+		function recargar_pagina(){
+			document.location.reload()
+		}
 		function inicio(){
+			setInterval(recargar_pagina, 15000);
 			$(".active").on("click", open_chat_popup);
 		}
 	</script>
 </head>
-<body>
-	<h1>Welcome, <?php echo $UserNameL; ?></h1>
+<body bgcolor="#DDDDDD">
+	<h1><?php echo $phrase['welcome']; ?>, <?php echo $UserNameL; ?></h2>
+
 
 	<?php 
 	if($UserRankL>0){
+	?>
 
-		echo "<h4>List of chat sessions</h4>";
-		echo "<a href='javascript:void(0)' onclick='document.location.reload()'>Refresh</a>";
 
+
+		<h4><?php echo $phrase['chat_sessions_list']; ?></h3>
+		<a href='./process.php?action=logout'><?php echo $phrase['logout']; ?></a>
+ <table id="tabla_home" width="800" border="0" cellspacing="0" cellpadding="0" style="font-size: 16px" >
+	<thead>
+		
+            <tr>
+              <td>ID</td>
+              <td><?php echo $phrase['name']; ?></td>
+              <td><?php echo $phrase['message']; ?></td>
+              <td><?php echo $phrase['email']; ?></td>
+              <td><?php echo $phrase['status']; ?></td>
+              <td><?php echo $phrase['query_time']; ?></td>
+             </tr>  
+   
+	</thead>
+
+	<tbody>
+		
+	<?php
 		$sql = "SELECT * FROM chat_sessions ORDER BY id DESC";
 		$result = $db->query($sql);
 function timeDiff($firstTime,$lastTime)
@@ -101,32 +154,47 @@ return $timeDiff;
 			$now_datetime = date('Y-m-d H:i:s');
 			$mins = ($last_activity - $now_datetime) / 60;
 			$difference = timeDiff($last_activity,$now_datetime);
-			echo "last activity: ".$difference;
 
 			if($row['status'] == 0){
-				$statuskey = "waiting";
+				$statuskey = $phrase['waiting'];
 				if($difference>60){
 					$result3 = $db->query("UPDATE  `chat_sessions` SET  `status` =  '3' WHERE  `chat_sessions`.`id` =".$row['id']." LIMIT 1");
 					$row['status'] = 3;
 				}
 			}elseif($row['status'] == 1){
-				$statuskey = "answered";
+				$statuskey = $phrase['answered'];
 			}elseif($row['status'] == 3){
-				$statuskey = "leaved";
+				$statuskey = $phrase['unanswered'];
 			}
-			$status = 'class="active '.$statuskey.'"'
-			?>
-			<article id="session-<?php echo $row['id'];?>" <?php echo $status; ?> >
-				<h3><?php echo $row['query']." by ".$row['name'];?></h3> <small><?php echo "(".$row['email'].")"; ?>  - <b>status: <?php echo $statuskey;?></b></small>
-				<abbr title="<?php echo date("c", strtotime($row['date']));?>"><?php echo date("d/m/Y H:i:s", strtotime($row['date']));?></abbr>
-			</article>
-			<?php
-		}
+			$status = 'class="active '.$row['status'].'"'
 
+
+?>
+
+            <tr id="session-<?php echo $row['id'];?>"
+            	<?php echo $status; ?> >
+			<td><?php echo $row['id'];?></td>
+            <td><?php echo $row['name'];?> </td>
+            <td>
+                <?php echo $row['query'];?> </td>        
+			<td><?php echo "(".$row['email'].")"; ?></td>  
+			<td><?php echo $statuskey;?></td>
+<td><abbr title="<?php echo date("c", strtotime($row['date']));?>"><?php echo date("d/m/Y H:i:s", strtotime($row['date']));?></abbr></td>
+			</td>
+
+</tr><?php
+		}
 	}
+
 	?>
 	<script>
 			$("abbr").timeago();
-	</script>
+
+			
+
+</script>
+
+</tbody>
+</table>
 </body>
 </html>

@@ -2,26 +2,18 @@
 // Here we require the config and database connection.
 require("../configuration.php");
 require("../connection.php");
+require("../languages/".$config['lang'].".php");
 
 $action = $_GET['action'];
 
-
-function remove_tags($mensaje)
-{
-$mensaje = str_replace("<","<",$mensaje);
-$mensaje = str_replace(">",">",$mensaje);
-$mensaje = str_replace("\'","'",$mensaje);
-$mensaje = str_replace('\"',"\"",$mensaje);
-return $mensaje;
-}
 
 
 if($action == "logout"){
 
 	setcookie("usEmail","x",time()-3600);
 	setcookie("usPass","x",time()-3600);
+	echo $phrase['sucefully_log_out_now_you_be_redirected']
 	?>
-	Sucefully log-out, now you are redirected to the home.
 	<SCRIPT LANGUAGE="javascript">
 	location.href = "index.php";
 	</SCRIPT>
@@ -44,8 +36,9 @@ if($action == "logout"){
 				//90 dias dura la cookie
 				setcookie("usEmail",$emailN,time()+7776000);
 				setcookie("usPass",$passN,time()+7776000);
+				echo $phrase['sucefully_log_in_now_you_be_redirected']
 				?>
-				Sucefully login, now you are redirected to the home!
+				
 				<SCRIPT LANGUAGE="javascript">
 				location.href = "index.php";
 				</SCRIPT>
@@ -53,18 +46,18 @@ if($action == "logout"){
 			}
 			else
 			{
-				echo "Password incorrecto";
+				echo $phrase['wrong_password'];
 			}
 		}
 		else
 		{
-			echo "Usuario no existente en la base de datos";
+			echo $phrase['user_doesnt_exist_in_the_database'];
 		}
 		// mysql_free_result($result);
 	}
 	else
 	{
-	echo "Debe especificar un email y password";
+	echo $phrase['you_must_fill_fields'];
 	}
 	$db->close();
 
@@ -77,7 +70,8 @@ if($action == "logout"){
 		$result = $db->query($sql); // We reeplace the old mysql php system for MySQLi
 		if($row = $result->fetch_assoc())
 		{
-			echo "Error, there are another account with this email";
+			// echo "Error, there are another account with this email";
+			echo $phrase['error_duplicated_email'];
 		}
 		else
 		{
@@ -88,9 +82,12 @@ if($action == "logout"){
 			$sql .= ",'".remove_tags($_POST["email"])."'";
 			$sql .= ")";
 			$register_result = $db->query($sql); // Execute query
-			echo "Sucefully Registered!";
+			
+
+			// Sucefully registered, now you are redirected to the login form.
+			
+			echo $phrase['sucefully_registered_now_you_be_redirected'];
 			?>
-			Sucefully registered, now you are redirected to the login form.
 			<SCRIPT LANGUAGE="javascript">
 			location.href = "login.php";
 			</SCRIPT>
@@ -99,14 +96,15 @@ if($action == "logout"){
 	}
 	else
 	{
-		echo "Debe llenar como minimo los campos de email y password";
+		// "Debe llenar como minimo los campos de email y password"
+		echo $phrase['you_must_fill_fields'];
 	}
 	$db->close();
 
 
 }else{
 
-	die("Wrong parameters");
+	die($phrase['wrong_parameters']);
 }
 
 

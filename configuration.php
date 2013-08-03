@@ -23,4 +23,6 @@ $config = array(
 	"contact_email" => $contact_email
 )
 
+
+// test gitignore
 ?>
