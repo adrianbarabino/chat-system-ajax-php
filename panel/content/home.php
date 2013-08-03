@@ -18,11 +18,11 @@ border:1px solid #aaa;
     -o-transition: padding .25s;
     transition: padding .25s;
 	}
-	tr.waiting{
+	tr.0{
 	box-shadow: 0 0 5px #d45252;
     border-color: #b03535
 	}
-	tr.answered{
+	tr.3{
 		background:#555555;
 		color:white;
 	}
@@ -47,11 +47,12 @@ border: 1px solid #e3e3e3;
 
 border-radius: 4px;
 
-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);}
+box-shadow: inset 0 1px 10px rgba(0,0,0,0.05);
+}
 #tabla_home td {background-color: #fff;
 border: 1px solid #ccc;
 
-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+box-shadow: inset 0 1px 10px rgba(0,0,0,0.075);
 
 transition: border linear .2s, box-shadow linear .2s;}
 #tabla_home td.top {vertical-align:top;width:1%;text-align:right;}
@@ -114,12 +115,12 @@ transition: border linear .2s, box-shadow linear .2s;}
 	<thead>
 		
             <tr>
-              <td width="130">ID</td>
-              <td width="70"><?php echo $phrase['name']; ?></td>
-              <td width="130"><?php echo $phrase['message']; ?></td>
-              <td width="100"><?php echo $phrase['email']; ?></td>
-              <td width="50"><?php echo $phrase['status']; ?></td>
-              <td width="130"><?php echo $phrase['query_time']; ?></td>
+              <td>ID</td>
+              <td><?php echo $phrase['name']; ?></td>
+              <td><?php echo $phrase['message']; ?></td>
+              <td><?php echo $phrase['email']; ?></td>
+              <td><?php echo $phrase['status']; ?></td>
+              <td><?php echo $phrase['query_time']; ?></td>
              </tr>  
    
 	</thead>
@@ -162,7 +163,7 @@ return $timeDiff;
 			}elseif($row['status'] == 3){
 				$statuskey = $phrase['unanswered'];
 			}
-			$status = 'class="active '.$statuskey.'"'
+			$status = 'class="active '.$row['status'].'"'
 
 
 ?>
