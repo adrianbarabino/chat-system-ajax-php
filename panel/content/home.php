@@ -94,7 +94,7 @@ transition: border linear .2s, box-shadow linear .2s;}
 		}
 		$(document).on("ready", inicio);
 		function inicio(){
-			setInterval(document.location.reload, 15000);
+			setInterval(document.location.reload(), 15000);
 			$(".active").on("click", open_chat_popup);
 		}
 	</script>
@@ -110,7 +110,7 @@ transition: border linear .2s, box-shadow linear .2s;}
 
 
 		<h4><?php echo $phrase['chat_sessions_list']; ?></h3>
-		<a href='./process.php?action=logout'><?php echo $phrease['logaut']; ?></a>
+		<a href='./process.php?action=logout'><?php echo $phrease['logout']; ?></a>
  <table id="tabla_home" width="800" border="0" cellspacing="0" cellpadding="0" style="font-size: 16px" >
 	<thead>
 		
