@@ -36,7 +36,6 @@ input
 
 #ask
 {
-    background: url(ask.jpg)no-repeat left 0;
     background-size: 100%;
     padding: 0; 
     width: 18%;
@@ -80,7 +79,6 @@ input
 
 #enter, #submitmsg
 {
-    background: url(ask.jpg)no-repeat left 0;
     background-size: 100%;
     padding: 0; 
     width: 18%;
@@ -259,14 +257,6 @@ input
 
 }
 
-.logout 
-{ 
-    padding:0;
-    right:0;
-
-}
-
-
 .msgln 
 { 
     margin:0 0 2px 0; 
@@ -276,7 +266,7 @@ input
 .welcome 
 { 
     font-size: 1em;
-    margin:.1em .5em;
+
     color: #000;
 }
 
@@ -286,4 +276,48 @@ input
     font-size: .2em;
     width: 80%;
     background:#222;
+}
+
+
+
+/* Cambios al 02/08 */
+
+#enter, #submitmsg {
+    padding: 1em 0;
+    background: #ddd;
+    border: 2px solid #555;
+    display: inline-block;
+    vertical-align: top;
+}
+#usermsg {
+    width: 70%;
+    border-radius: 0;
+    border: 2px solid #555;
+    background: #222;
+    padding: 0.7em 1em;
+    display: inline-block;
+    vertical-align: top;
+}
+#chatbox {
+    border: 0;
+}
+
+.welcome {
+    display: inline-block;
+    width: 70%;
+    margin: 1em;
+}
+#exit {
+    display: inline-block;
+    width: 100%;
+    float: none;
+    border-radius: 0;
+    padding: 1em;
+    background: #111;
+}
+.logout {
+    display: inline-block;
+}
+#menu {
+    background: #bbb;
 }

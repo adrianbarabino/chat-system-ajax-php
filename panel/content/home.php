@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Admin Panel</title>
 	<style>
-	article{
+	tr{
 
 border:1px solid #aaa;
     box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
@@ -18,15 +18,15 @@ border:1px solid #aaa;
     -o-transition: padding .25s;
     transition: padding .25s;
 	}
-	article.waiting{
+	tr.waiting{
 	box-shadow: 0 0 5px #d45252;
     border-color: #b03535
 	}
-	article.answered{
+	tr.answered{
 		background:#555555;
 		color:white;
 	}
-	article.active{
+	tr.active{
 	 box-shadow: 0 0 5px #5cd053;
     border-color: #28921f;
 	}
@@ -44,29 +44,25 @@ padding: 3px;
 margin-bottom: 20px;
 background-color: #f5f5f5;
 border: 1px solid #e3e3e3;
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
+
 border-radius: 4px;
--webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
--moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+
 box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);}
 #tabla_home td {background-color: #fff;
 border: 1px solid #ccc;
--webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
--moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+
 box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
--webkit-transition: border linear .2s, box-shadow linear .2s;
--moz-transition: border linear .2s, box-shadow linear .2s;
--o-transition: border linear .2s, box-shadow linear .2s;
+
 transition: border linear .2s, box-shadow linear .2s;}
 #tabla_home td.top {vertical-align:top;width:1%;text-align:right;}
-#tabla_home th {background:#B7C5D4;text-align: center; color:#000}
+#tabla_home thead {background:#414141;color:#fff}
 #tabla_home .r1 { background-color: #ffffff; }
 #tabla_home .r2 { background-color: #dddddd; }
 #tabla_home caption	{ font-style:italic; color:#999; }
 	</style>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   	<script src="../timeago.js"></script>
+  	<script src="../timeago-<?php echo $config['lang']; ?>.js"></script>
   	<script>
 		$(document).on("ready", iniciar);
 		var lastId;
@@ -82,26 +78,27 @@ transition: border linear .2s, box-shadow linear .2s;}
 
 		function open_chat_popup(info) {
 			var sessionId = info.currentTarget.id.substring(8);
-			var id_article = info.currentTarget.id;
-			var is_active = $("article#" + id_article).hasClass("active");
+			var id_tr = info.currentTarget.id;
+			var is_active = $("tr#" + id_tr).hasClass("active");
 			if(is_active){
 				var options = "toolbar=no, directories=no, status=no, menubar=no, scrollbar=no, resizable=no, width=300, height=450";
 				var chat_url = "chat.php?sessionId="+sessionId;
 				window.open(chat_url, 'Chat', options);
-				console.log("article#" + id_article);
-				$("article#" + id_article).removeClass("active");
+				console.log("tr#" + id_tr);
+				$("tr#" + id_tr).removeClass("active");
 			}else{
 				console.log("This session is on chat now!");
 			}
 		}
 		$(document).on("ready", inicio);
 		function inicio(){
+			setInterval(document.location.reload(), 6000)M
 			$(".active").on("click", open_chat_popup);
 		}
 	</script>
 </head>
 <body bgcolor="#DDDDDD">
-	<h1>Bienvenid@, <?php echo $UserNameL; ?></h2>
+	<h1><?php echo $phrase['welcome']; ?>, <?php echo $UserNameL; ?></h2>
 
 
 	<?php 
@@ -110,19 +107,18 @@ transition: border linear .2s, box-shadow linear .2s;}
 
 
 
-		<h4>Lista de las sesiones de chat</h3>
-		<a href='javascript:void(0)' onclick='document.location.reload()'>Actualizar </a>
+		<h4><?php echo $phrase['chat_sessions_list']; ?></h3>
+		<a href='./process.php?action=logout'><?php echo $phrease['logaut']; ?></a>
  <table id="tabla_home" width="800" border="0" cellspacing="0" cellpadding="0" style="font-size: 16px" >
 	<thead>
 		
             <tr>
-              <th width="70">Nombre</th>
-              <th width="130">Mensaje</th>
-              <th width="100">Email</th>
-              <th width="50">Estado</th>
-              <th width="130">Hora de consulta</th>
-              <th width="130">ID</th>
-              <th width="20">Accion</th>
+              <td width="130">ID</td>
+              <td width="70"><?php echo $phrase['name']; ?></td>
+              <td width="130"><?php echo $phrase['message']; ?></td>
+              <td width="100"><?php echo $phrase['email']; ?></td>
+              <td width="50"><?php echo $phrase['status']; ?></td>
+              <td width="130"><?php echo $phrase['query_time']; ?></td>
              </tr>  
    
 	</thead>
@@ -153,37 +149,34 @@ return $timeDiff;
 			$now_datetime = date('Y-m-d H:i:s');
 			$mins = ($last_activity - $now_datetime) / 60;
 			$difference = timeDiff($last_activity,$now_datetime);
-			echo "última actividad: ".$difference;
 
 			if($row['status'] == 0){
-				$statuskey = "Hablando..";
+				$statuskey = $phrase['waiting'];
 				if($difference>60){
 					$result3 = $db->query("UPDATE  `chat_sessions` SET  `status` =  '3' WHERE  `chat_sessions`.`id` =".$row['id']." LIMIT 1");
 					$row['status'] = 3;
 				}
 			}elseif($row['status'] == 1){
-				$statuskey = "Atendído";
+				$statuskey = $phrase['answered'];
 			}elseif($row['status'] == 3){
-				$statuskey = "Hojas";
+				$statuskey = $phrase['unanswered'];
 			}
 			$status = 'class="active '.$statuskey.'"'
 
 
 ?>
 
-            <tr>
-            <td><?php echo $row['name'];?> </td>
-            <td><article id="session-<?php echo $row['id'];?>"
+            <tr id="session-<?php echo $row['id'];?>"
             	<?php echo $status; ?> >
+			<td><?php echo $row['id'];?</td>
+            <td><?php echo $row['name'];?> </td>
+            <td>
                 <?php echo $row['query'];?> </td>        
 			<td><?php echo "(".$row['email'].")"; ?></td>  
 			<td><?php echo $statuskey;?></b></td>
 <td><abbr title="<?php echo date("c", strtotime($row['date']));?>"><?php echo date("d/m/Y H:i:s", strtotime($row['date']));?></abbr></td>
-			</article></td>
-			<td></td>
-<td>
-<input type="button" value="Borrar" id="borrar_elemento" class="boton_borrar" />	
-</td>
+			</td>
+
 </tr><?php
 		}
 	}
@@ -191,6 +184,8 @@ return $timeDiff;
 	?>
 	<script>
 			$("abbr").timeago();
+
+			
 
 </script>
 
