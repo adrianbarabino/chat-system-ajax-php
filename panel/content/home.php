@@ -168,7 +168,7 @@ return $timeDiff;
 
             <tr id="session-<?php echo $row['id'];?>"
             	<?php echo $status; ?> >
-			<td><?php echo $row['id'];?</td>
+			<td><?php echo $row['id'];?></td>
             <td><?php echo $row['name'];?> </td>
             <td>
                 <?php echo $row['query'];?> </td>        
