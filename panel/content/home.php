@@ -55,7 +55,8 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 
 transition: border linear .2s, box-shadow linear .2s;}
 #tabla_home td.top {vertical-align:top;width:1%;text-align:right;}
-#tabla_home thead {background:#414141;color:#fff}
+#tabla_home thead tr {background:#414141;color:#fff}
+#tabla_home thead tr td{border:2px solid #333;}
 #tabla_home .r1 { background-color: #ffffff; }
 #tabla_home .r2 { background-color: #dddddd; }
 #tabla_home caption	{ font-style:italic; color:#999; }
