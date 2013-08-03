@@ -4,7 +4,7 @@
 
 body 
 {
-    font-size:12px;
+    font-size:16px;
     font-family: arial, verdana;
     margin: 0;
     padding:0;
@@ -61,7 +61,7 @@ input
 {
     background:#fff;
     border:1px solid #ACD8F0;
-    border-radius: .8em; 
+    border-radius: .5em; 
     color: #000;
     font-size: .8em;
     height:270px;
@@ -238,7 +238,6 @@ input
 #usermsg 
 {
     background: #000;
-    border-radius: .5em;
     color: #ccc;
     padding: .5em 1em;
     margin: 0;

@@ -39,7 +39,7 @@ border:1px solid #aaa;
 		text-align:right;
 		float:right;
 	}
-#table_exemple {min-height: 20px;
+#tabla_home {min-height: 20px;
 padding: 3px;
 margin-bottom: 20px;
 background-color: #f5f5f5;
@@ -50,7 +50,7 @@ border-radius: 4px;
 -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
 -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
 box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);}
-#table_exemple td {background-color: #fff;
+#tabla_home td {background-color: #fff;
 border: 1px solid #ccc;
 -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
@@ -59,11 +59,11 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 -moz-transition: border linear .2s, box-shadow linear .2s;
 -o-transition: border linear .2s, box-shadow linear .2s;
 transition: border linear .2s, box-shadow linear .2s;}
-#table_exemple td.top {vertical-align:top;width:1%;text-align:right;}
-#table_exemple th {background:#B7C5D4;text-align: center; color:#000}
-#table_exemple .r1 { background-color: #ffffff; }
-#table_exemple .r2 { background-color: #dddddd; }
-#table_exemple caption	{ font-style:italic; color:#999; }
+#tabla_home td.top {vertical-align:top;width:1%;text-align:right;}
+#tabla_home th {background:#B7C5D4;text-align: center; color:#000}
+#tabla_home .r1 { background-color: #ffffff; }
+#tabla_home .r2 { background-color: #dddddd; }
+#tabla_home caption	{ font-style:italic; color:#999; }
 	</style>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   	<script src="../timeago.js"></script>
@@ -103,7 +103,18 @@ transition: border linear .2s, box-shadow linear .2s;}
 <body bgcolor="#DDDDDD">
 	<h1>Bienvenid@, <?php echo $UserNameL; ?></h2>
 
- <table id="table_exemple" width="800" border="0" cellspacing="0" cellpadding="0" style="font-size: 11pt" >
+
+	<?php 
+	if($UserRankL>0){
+	?>
+
+
+
+		<h4>Lista de las sesiones de chat</h3>
+		<a href='javascript:void(0)' onclick='document.location.reload()'>Actualizar </a>
+ <table id="tabla_home" width="800" border="0" cellspacing="0" cellpadding="0" style="font-size: 16px" >
+	<thead>
+		
             <tr>
               <th width="70">Nombre</th>
               <th width="130">Mensaje</th>
@@ -114,13 +125,11 @@ transition: border linear .2s, box-shadow linear .2s;}
               <th width="20">Accion</th>
              </tr>  
    
-	<?php 
-	if($UserRankL>0){
+	</thead>
 
-		echo "<h4>Lista de las sesiones de chat</h3>";
-		echo "<a href='javascript:void(0)' onclick='document.location.reload()'>Actualizar </a>";
-
-
+	<tbody>
+		
+	<?php
 		$sql = "SELECT * FROM chat_sessions ORDER BY id DESC";
 		$result = $db->query($sql);
 function timeDiff($firstTime,$lastTime)
@@ -171,7 +180,11 @@ return $timeDiff;
 			<td><?php echo $statuskey;?></b></td>
 <td><abbr title="<?php echo date("c", strtotime($row['date']));?>"><?php echo date("d/m/Y H:i:s", strtotime($row['date']));?></abbr></td>
 			</article></td>
-			<td><?php
+			<td></td>
+<td>
+<input type="button" value="Borrar" id="borrar_elemento" class="boton_borrar" />	
+</td>
+</tr><?php
 		}
 	}
 
@@ -180,11 +193,8 @@ return $timeDiff;
 			$("abbr").timeago();
 
 </script>
-</td>
-<td>
-Borrar	
-</td>
-</tr>
+
+</tbody>
 </table>
 </body>
 </html>
