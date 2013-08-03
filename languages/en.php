@@ -21,10 +21,26 @@ $phrase = array(
 	"date" => "Date",
 	"message" => "Message",
 	"form_subject_email" => "Form sended by website",
-	"ask_button" => "Send Question"
-
-
+	"ask_button" => "Send Question",
+	"unanswered" => "Unanswered",
+	"waiting" => "Waiting",
+	"answered" => "Answered",
+	"last-activity" => "Last Activity",
+	"you-must-fill-fields" => "You must complete the email and password fields",
+	"sucefully_registered_now_you_be_redirected" => "Sucefully registered, now you be redirected to the login form.",
+   	"sucefully_log_out_now_you_be_redirected" => "Sucefully logged out, now you be redirected to the home",
+	"sucefully_log_in_now_you_be_redirected" => "Sucefully logged in, now you be redirected to the home",
+	"wrong_password" => "Wrong Password",
+	"user_doesnt_exist_in_the_database" => "This username doesn't exist in the database",
+	"wrong_parameters" => "Wrong Parameters",
+    "error_duplicated_email" => "Error! This email already be in the database",
+    "Welcome" => "Welcome",
+    "chat_sessions_list" => "Chat sessions list",
+    "status" => "Status",
+    "query_time" => "Time of question",
+    "logout" => "Exit",
+    "actions" => "Actions"
 	);
 
- 	// Ejemplo de insertar ask-button: $phrase['ask_button']
+ 	// Centauro no participó en esta parte D:
 ;?>
