@@ -2,17 +2,17 @@
 
 // General Configuration
 
-$site_title = "Help Desk Chat";
+$site_title = "Chat Master";
 
 
 // Database Configuration
 
 $dbhost = "localhost"; // Hostname of the MySQL server (default: localhost)
-$dbname = "database"; // Database name
-$dbuser = "username"; // Username for your database
-$dbpass = "password";  // Password of your MySQL username
-$lang = "en";
-$contact_email = "admin_email_change_me";
+$dbname = "chat_adrianbara"; // Database name
+$dbuser = "root"; // Username for your database
+$dbpass = "webmaster";  // Password of your MySQL username
+$lang = "es";
+$contact_email = "webmasterreloader@gmail.com";
 $config = array(
 	"site_title" => $site_title,
 	"lang" => $lang,

@@ -76,7 +76,7 @@ while (!feof($fd)) {
 // -------------------------
 // Read next line from file.
 // -------------------------
-$line = fgets($fd, 32768);
+$line = !fgets($fd, 32768);
 $stmt = "$stmt$line";
 
 // -------------------------------------------------------------------
@@ -96,7 +96,7 @@ $stmt = preg_replace("/;/", "", $stmt);
 // Execute the statement.
 // ----------------------
 if(!$result = $db->query($stmt, $handle)){
-	die("Error in the query to the DB");
+	die("lenea 99 Error in the query to the DB");
 }
 
 $stmt = "";

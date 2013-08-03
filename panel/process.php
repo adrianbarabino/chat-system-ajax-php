@@ -6,16 +6,6 @@ require("../connection.php");
 $action = $_GET['action'];
 
 
-function remove_tags($mensaje)
-{
-$mensaje = str_replace("<","<",$mensaje);
-$mensaje = str_replace(">",">",$mensaje);
-$mensaje = str_replace("\'","'",$mensaje);
-$mensaje = str_replace('\"',"\"",$mensaje);
-return $mensaje;
-}
-
-
 if($action == "logout"){
 
 	setcookie("usEmail","x",time()-3600);
@@ -25,7 +15,7 @@ if($action == "logout"){
 	<SCRIPT LANGUAGE="javascript">
 	location.href = "index.php";
 	</SCRIPT>
-	<?
+	<?php
 
 }elseif($action == "login"){
 
@@ -49,22 +39,25 @@ if($action == "logout"){
 				<SCRIPT LANGUAGE="javascript">
 				location.href = "index.php";
 				</SCRIPT>
-				<?
+				<?php
 			}
 			else
 			{
 				echo "Password incorrecto";
+				echo "<input type='button' value='Volver Atras' onClick='history.go(-1);'>";
 			}
 		}
 		else
 		{
 			echo "Usuario no existente en la base de datos";
+			echo "<input type='button' value='Volver Atras' onClick='history.go(-1);'>";
 		}
 		// mysql_free_result($result);
 	}
 	else
 	{
 	echo "Debe especificar un email y password";
+	echo "<input type='button' value='Volver Atras' onClick='history.go(-1);'>";
 	}
 	$db->close();
 
@@ -94,12 +87,13 @@ if($action == "logout"){
 			<SCRIPT LANGUAGE="javascript">
 			location.href = "login.php";
 			</SCRIPT>
-			<?
+			<?php
 		}
 	}
 	else
 	{
 		echo "Debe llenar como minimo los campos de email y password";
+		echo "<input type='button' value='Volver Atras' onClick='history.go(-1);'>";
 	}
 	$db->close();
 

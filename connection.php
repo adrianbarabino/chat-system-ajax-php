@@ -8,7 +8,7 @@ if($db->connect_errno > 0){
 function remove_tags($message)
 {
 $message = str_replace("<","<",$message);
-$message = str_replace(">,">",$message);
+$message = str_replace(">",">",$message);
 $message = str_replace("\'","'",$message);
 $message = str_replace('\"',"\"",$message);
 return $message;

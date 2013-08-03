@@ -1,28 +1,34 @@
 <?php
-
-
-require("../connection.php");
 ?><!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Admin Panel</title>
 	<style>
 	article{
 
-		margin: 0.45em 0.3em;
-		padding:0.6em 0.4em;
+border:1px solid #aaa;
+    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+    border-radius:2px;
+    color: #888;
+    font-size: 12px;
+    padding-right:30px;
+    -moz-transition: padding .25s;
+    -webkit-transition: padding .25s;
+    -o-transition: padding .25s;
+    transition: padding .25s;
 	}
 	article.waiting{
-		background:#149;
-		color:#eee;
+	box-shadow: 0 0 5px #d45252;
+    border-color: #b03535
 	}
 	article.answered{
-		background:#333;
+		background:#555555;
 		color:white;
 	}
 	article.active{
-		box-shadow: 0 0 50px 10px #149;
+	 box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
 	}
 	h3{
 		display:inline-block;
@@ -33,6 +39,31 @@ require("../connection.php");
 		text-align:right;
 		float:right;
 	}
+#table_exemple {min-height: 20px;
+padding: 3px;
+margin-bottom: 20px;
+background-color: #f5f5f5;
+border: 1px solid #e3e3e3;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);}
+#table_exemple td {background-color: #fff;
+border: 1px solid #ccc;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-webkit-transition: border linear .2s, box-shadow linear .2s;
+-moz-transition: border linear .2s, box-shadow linear .2s;
+-o-transition: border linear .2s, box-shadow linear .2s;
+transition: border linear .2s, box-shadow linear .2s;}
+#table_exemple td.top {vertical-align:top;width:1%;text-align:right;}
+#table_exemple th {background:#B7C5D4;text-align: center; color:#000}
+#table_exemple .r1 { background-color: #ffffff; }
+#table_exemple .r2 { background-color: #dddddd; }
+#table_exemple caption	{ font-style:italic; color:#999; }
 	</style>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   	<script src="../timeago.js"></script>
@@ -69,14 +100,26 @@ require("../connection.php");
 		}
 	</script>
 </head>
-<body>
-	<h1>Welcome, <?php echo $UserNameL; ?></h1>
+<body bgcolor="#DDDDDD">
+	<h1>Bienvenid@, <?php echo $UserNameL; ?></h2>
 
+ <table id="table_exemple" width="800" border="0" cellspacing="0" cellpadding="0" style="font-size: 11pt" >
+            <tr>
+              <th width="70">Nombre</th>
+              <th width="130">Mensaje</th>
+              <th width="100">Email</th>
+              <th width="50">Estado</th>
+              <th width="130">Hora de consulta</th>
+              <th width="130">ID</th>
+              <th width="20">Accion</th>
+             </tr>  
+   
 	<?php 
 	if($UserRankL>0){
 
-		echo "<h4>List of chat sessions</h4>";
-		echo "<a href='javascript:void(0)' onclick='document.location.reload()'>Refresh</a>";
+		echo "<h4>Lista de las sesiones de chat</h3>";
+		echo "<a href='javascript:void(0)' onclick='document.location.reload()'>Actualizar </a>";
+
 
 		$sql = "SELECT * FROM chat_sessions ORDER BY id DESC";
 		$result = $db->query($sql);
@@ -101,32 +144,47 @@ return $timeDiff;
 			$now_datetime = date('Y-m-d H:i:s');
 			$mins = ($last_activity - $now_datetime) / 60;
 			$difference = timeDiff($last_activity,$now_datetime);
-			echo "last activity: ".$difference;
+			echo "última actividad: ".$difference;
 
 			if($row['status'] == 0){
-				$statuskey = "waiting";
+				$statuskey = "Hablando..";
 				if($difference>60){
 					$result3 = $db->query("UPDATE  `chat_sessions` SET  `status` =  '3' WHERE  `chat_sessions`.`id` =".$row['id']." LIMIT 1");
 					$row['status'] = 3;
 				}
 			}elseif($row['status'] == 1){
-				$statuskey = "answered";
+				$statuskey = "Atendído";
 			}elseif($row['status'] == 3){
-				$statuskey = "leaved";
+				$statuskey = "Hojas";
 			}
 			$status = 'class="active '.$statuskey.'"'
-			?>
-			<article id="session-<?php echo $row['id'];?>" <?php echo $status; ?> >
-				<h3><?php echo $row['query']." by ".$row['name'];?></h3> <small><?php echo "(".$row['email'].")"; ?>  - <b>status: <?php echo $statuskey;?></b></small>
-				<abbr title="<?php echo date("c", strtotime($row['date']));?>"><?php echo date("d/m/Y H:i:s", strtotime($row['date']));?></abbr>
-			</article>
-			<?php
-		}
 
+
+?>
+
+            <tr>
+            <td><?php echo $row['name'];?> </td>
+            <td><article id="session-<?php echo $row['id'];?>"
+            	<?php echo $status; ?> >
+                <?php echo $row['query'];?> </td>        
+			<td><?php echo "(".$row['email'].")"; ?></td>  
+			<td><?php echo $statuskey;?></b></td>
+<td><abbr title="<?php echo date("c", strtotime($row['date']));?>"><?php echo date("d/m/Y H:i:s", strtotime($row['date']));?></abbr></td>
+			</article></td>
+			<td><?php
+		}
 	}
+
 	?>
 	<script>
 			$("abbr").timeago();
-	</script>
+
+</script>
+</td>
+<td>
+Borrar	
+</td>
+</tr>
+</table>
 </body>
 </html>

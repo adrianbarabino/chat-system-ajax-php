@@ -20,10 +20,11 @@ $phrase = array(
 	"email" => "E-Mail",
 	"date" => "Date",
 	"message" => "Message",
-	"form_subject_email" => "Form sended by website"
-
+	"form_subject_email" => "Form sended by website",
+	"ask_button" => "Send Question"
 
 
 	);
 
-?>
+ 	// Ejemplo de insertar ask-button: $phrase['ask_button']
+;?>

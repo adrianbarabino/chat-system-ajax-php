@@ -20,6 +20,7 @@ $phrase = array(
 	"email" => "E-Mail",
 	"date" => "Fecha",
 	"message" => "Mensaje",
-	"form_subject_email" => "Formulario enviado desde la web"
+	"form_subject_email" => "Formulario enviado desde la web",
+	"ask_button" => "Enviar Consulta"
 	);
 ?>

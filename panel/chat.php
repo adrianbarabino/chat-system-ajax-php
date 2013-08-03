@@ -8,7 +8,7 @@ require("check.php");
 if($loginOK){
 
 ?><!doctype html>
-	<html lang="en">
+	<html lang="es">
 	<head>
 		<meta charset="UTF-8">
 		<title>Admin Chat</title>
@@ -38,8 +38,8 @@ if($loginOK){
 		}
 		</style>
   	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  	  <script src="timeago.js"></script>
-  	  <script src="timeago-<?php echo $config['lang']; ?>.js"></script>
+  	  <script src="../timeago.js"></script>
+  	  <script src="../timeago-<?php echo $config['lang']; ?>.js"></script>
 	</head>
 	<body>
 <?php

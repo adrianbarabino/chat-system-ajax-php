@@ -22,3 +22,11 @@ if($loginOK){
 
 }
 ?>
+<?php
+// Desconectar o cerrar una session
+if ($_SESSION['salir'] == 'SI') {
+session_destroy(); 
+header("Location: sing_in.php");
+}
+
+?>

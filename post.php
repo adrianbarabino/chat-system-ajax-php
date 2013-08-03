@@ -1,3 +1,4 @@
+
 <?php
 	require("configuration.php");
 	require("connection.php");
