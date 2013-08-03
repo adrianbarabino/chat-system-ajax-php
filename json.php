@@ -2,30 +2,20 @@
 	require("configuration.php");
 	require("connection.php");
 
-	function remove_tags($mensaje)
-	{
-		$mensaje = strip_tags($mensaje);
-		$mensaje = str_replace("<","<",$mensaje);
-		$mensaje = str_replace(">",">",$mensaje);
-		$mensaje = str_replace("\'","'",$mensaje);
-		$mensaje = str_replace("\\","",$mensaje);
-		$mensaje = str_replace('"','\\"',$mensaje);
-		return $mensaje;
-	}	
-	if($_POST['sessionId'] || $_POST['sessionId']){
-		if($_POST['sessionId']){
-			$sessionId = $_POST['sessionId'];
-		}elseif ($_POST['sessionId']) {
-			$sessionId = $_POST['sessionId'];
+	if($_REQUEST['sessionId'] || $_REQUEST['sessionId']){
+		if($_REQUEST['sessionId']){
+			$sessionId = $_REQUEST['sessionId'];
+		}elseif ($_REQUEST['sessionId']) {
+			$sessionId = $_REQUEST['sessionId'];
 		}else{
 			die("Wrong request!");
 		}
 		$sql = "SELECT * FROM  `chat_messages` WHERE  `idsession` = ".$sessionId;
-		if($_POST['lastId'] || $_POST['lastId']){
-		if($_POST['lastId']){
-			$lastId = $_POST['lastId'];
-		}elseif ($_POST['lastId']) {
-			$lastId = $_POST['lastId'];
+		if($_REQUEST['lastId'] || $_REQUEST['lastId']){
+		if($_REQUEST['lastId']){
+			$lastId = $_REQUEST['lastId'];
+		}elseif ($_REQUEST['lastId']) {
+			$lastId = $_REQUEST['lastId'];
 		}
 			$sql = $sql." AND `id` > ".$lastId;
 
@@ -57,7 +47,7 @@ $response .= '},'. "\n";
 <?php
 
 
-if($_POST['last_activity'] == 1){
+if($_REQUEST['last_activity'] == 1){
 
 	$result = $db->query("DELETE FROM `last_activity` WHERE id_session='".$sessionId."';");       
 	if ($mysqli->affected_rows>0){

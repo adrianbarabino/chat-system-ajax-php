@@ -2,6 +2,7 @@
 // Here we require the config and database connection.
 require("../configuration.php");
 require("../connection.php");
+require("../languages/".$config['lang'].".php");
 
 require("check.php");
 
@@ -21,4 +22,12 @@ if($loginOK){
       require("./content/forbidden.php");
 
 }
+?>
+<?php
+// Desconectar o cerrar una session
+if ($_SESSION['salir'] == 'SI') {
+session_destroy(); 
+header("Location: sing_in.php");
+}
+
 ?>

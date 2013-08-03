@@ -1,4 +1,6 @@
-<?
+<?php
+// Si ingrrsarmos <? (forma corta de <?php) no lo toma tu programa de localhost
+
 session_start();
 
 require("configuration.php");
@@ -50,7 +52,7 @@ echo'
                 <div id="msnzone">
                     <textarea size="140" placeholder="'.$phrase["enter_your_question"].'" name="query" id="query"></textarea><br>
                 </div>
-                    <input type="button" name="Ask" id="ask" value=""/>
+                    <input type="button" name="Ask" id="ask" value="'.$phrase["ask_button"].'"/>
             </form>
         </div>
     </div>
@@ -68,11 +70,13 @@ echo'
                     <h3>'.$phrase["how_may_we_help_you"].'</h3>
                     <input type="text" placeholder="'.$phrase["name_placeholder"].'" name="name" id="name" /><br>
                     <input type="text" placeholder="'.$phrase["email_placeholder"].'" name="email" id="email" /><br>
-                </div>
+                </div><div>Quedan <input type="text" name="remLen" size="1" maxlength="1" value="50" readonly> letras.</div>
                 <div id="msnzone">
-                    <textarea size="140" placeholder="'.$phrase["enter_your_question"].'" name="query" id="query"></textarea><br>
+                    <form> 
+<textarea name="query" id="query" wrap="physical" cols="20" placeholder="'.$phrase["enter_your_question"].'" rows="2" onkeydown="contador(this.form.query,this.form.remLen,50);" onkeyup="contador(this.form.query,this.form.remLen,50);" style="margin: 0px; width: 226px; height: 42px;"></textarea> 
+</form>
                 </div>
-                    <input type="button" name="Ask" id="ask" value=""/>
+                    <input type="button" name="Ask" id="ask" value="'.$phrase["ask_button"].'"/>
             </form>
         </div>
     </div>
@@ -104,11 +108,11 @@ if(isset($_POST['enter'])){
 
     <title>sk8walker chat</title>
 
-    <link rel="stylesheet" href="http://draoomedia.com/webs/ms&s/CHAT/style.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
         function open_chat_popup() {
-            var options = "toolbar=no, directories=no, status=no, menubar=no, scrollbar=no, resizable=no, width=300, height=445";
+            var options = "toolbar=no, directories=no, status=no, menubar=no, scrollbar=no, resizable=no, width=373, height=520";
             var chat_url = "chat.php"
             window.open('', 'Chat', options);
             $("#chat").submit();
@@ -140,12 +144,19 @@ if(isset($_POST['enter'])){
     }
 
     </style>
+<SCRIPT language="JavaScript" type="text/javascript"> 
 
+function contador (campo, cuentacampo, limite) { 
+if (campo.value.length > limite) campo.value = campo.value.substring(0, limite); 
+else cuentacampo.value = limite - campo.value.length; 
+} 
+
+</script> 
 
 </head>
 
 <body>
-
+mi pagina .com 
 <?php
 if(!isset($_SESSION['name'])){
     loginForm();
