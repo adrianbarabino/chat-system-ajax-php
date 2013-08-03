@@ -2,7 +2,7 @@
 // Here we require the config and database connection.
 require("../configuration.php");
 require("../connection.php");
-require("./languages/".$config['lang'].".php");
+require("../languages/".$config['lang'].".php");
 
 $action = $_GET['action'];
 
