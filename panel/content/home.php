@@ -110,7 +110,7 @@ transition: border linear .2s, box-shadow linear .2s;}
 
 
 		<h4><?php echo $phrase['chat_sessions_list']; ?></h3>
-		<a href='./process.php?action=logout'><?php echo $phrease['logout']; ?></a>
+		<a href='./process.php?action=logout'><?php echo $phrase['logout']; ?></a>
  <table id="tabla_home" width="800" border="0" cellspacing="0" cellpadding="0" style="font-size: 16px" >
 	<thead>
 		
