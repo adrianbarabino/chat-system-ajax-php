@@ -93,8 +93,11 @@ transition: border linear .2s, box-shadow linear .2s;}
 			}
 		}
 		$(document).on("ready", inicio);
+		function recargar_pagina(){
+			document.location.reload()
+		}
 		function inicio(){
-			setInterval(document.location.reload(), 15000);
+			setInterval(recargar_pagina, 15000);
 			$(".active").on("click", open_chat_popup);
 		}
 	</script>
