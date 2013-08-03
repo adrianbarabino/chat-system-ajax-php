@@ -93,7 +93,7 @@ transition: border linear .2s, box-shadow linear .2s;}
 		}
 		$(document).on("ready", inicio);
 		function inicio(){
-			setInterval(document.location.reload(), 6000);
+			setInterval(document.location.reload(), 15000);
 			$(".active").on("click", open_chat_popup);
 		}
 	</script>
